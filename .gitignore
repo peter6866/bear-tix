@@ -1,3 +1,3 @@
 node_modules
 .DS_Store
-infra/
+infra/k8s/secret.sh
