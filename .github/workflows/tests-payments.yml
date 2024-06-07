@@ -16,4 +16,4 @@ jobs:
           npm install
           npm run test:ci
         env:
-          STRIPE_KEY: ${{ secrets.STRIPE_API }}  # Access the secret
+          STRIPE_KEY: ${{ secrets.STRIPE_KEY }} 
