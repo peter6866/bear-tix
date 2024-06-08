@@ -1,4 +1,4 @@
-import useRequest from '@/hooks/use-request';
+import useRequest from '../../hooks/use-request';
 import Router from 'next/router';
 
 const TicketShow = ({ ticket }: any) => {

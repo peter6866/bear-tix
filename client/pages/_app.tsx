@@ -1,8 +1,8 @@
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { theme } from '../theme';
-import buildClient from '@/api/build-client';
-import Header from '@/components/header';
+import buildClient from '../api/build-client';
+import Header from '../components/header';
 
 const App = ({ Component, pageProps, currentUser }: any) => {
   return (

@@ -22,7 +22,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "**/*.js"
+          - src: "**/*.tsx"
             dest: .
     - image: us.gcr.io/ticketing-dev-425301/tickets
       context: tickets
