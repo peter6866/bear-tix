@@ -1,20 +1,21 @@
-import '@/styles/globals.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import buildClient from '../api/build-client';
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+import { theme } from '../theme';
+import buildClient from '@/api/build-client';
 import Header from '@/components/header';
 
-const AppComponent = ({ Component, pageProps, currentUser }) => {
+const App = ({ Component, pageProps, currentUser }: any) => {
   return (
-    <div>
+    <MantineProvider theme={theme}>
       <Header currentUser={currentUser} />
-      <div className="container">
+      <div>
         <Component currentUser={currentUser} {...pageProps} />
       </div>
-    </div>
+    </MantineProvider>
   );
 };
 
-AppComponent.getInitialProps = async (appContext) => {
+App.getInitialProps = async (appContext: any) => {
   const client = buildClient(appContext.ctx);
   const { data } = await client.get('/api/users/currentuser');
 
@@ -23,7 +24,7 @@ AppComponent.getInitialProps = async (appContext) => {
     pageProps = await appContext.Component.getInitialProps(
       appContext.ctx,
       client,
-      data.currentUser,
+      data.currentUser
     );
   }
 
@@ -33,4 +34,4 @@ AppComponent.getInitialProps = async (appContext) => {
   };
 };
 
-export default AppComponent;
+export default App;

@@ -3,7 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import useRequest from '../../hooks/use-request';
 import Router from 'next/router';
 
-const OrderShow = ({ order, currentUser }) => {
+const OrderShow = ({ order, currentUser }: any) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const { doRequest, errors } = useRequest({
     url: '/api/payments',
@@ -16,7 +16,9 @@ const OrderShow = ({ order, currentUser }) => {
 
   useEffect(() => {
     const findTimeLeft = () => {
-      const msLeft = new Date(order.expiresAt) - new Date();
+      const expiresAtDate = new Date(order.expiresAt);
+      const currentDate = new Date();
+      const msLeft: number = expiresAtDate.getTime() - currentDate.getTime();
       setTimeLeft(Math.round(msLeft / 1000));
     };
 
@@ -46,7 +48,7 @@ const OrderShow = ({ order, currentUser }) => {
   );
 };
 
-OrderShow.getInitialProps = async (context, client) => {
+OrderShow.getInitialProps = async (context: any, client: any) => {
   const { orderId } = context.query;
   const { data } = await client.get(`/api/orders/${orderId}`);
 

@@ -1,6 +1,10 @@
 import Link from 'next/link';
 
-export default function Header({ currentUser }) {
+interface HeaderProps {
+  currentUser: any;
+}
+
+export default function Header({ currentUser }: HeaderProps) {
   const links = [
     !currentUser && { label: 'Sign Up', href: '/auth/signup' },
     !currentUser && { label: 'Sign In', href: '/auth/signin' },

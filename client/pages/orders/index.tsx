@@ -1,7 +1,7 @@
-const OrderIndex = ({ orders }) => {
+const OrderIndex = ({ orders }: any) => {
   return (
     <ul>
-      {orders.map((order) => {
+      {orders.map((order: any) => {
         return (
           <li key={order.id}>
             {order.ticket.title} - {order.status}
@@ -12,7 +12,7 @@ const OrderIndex = ({ orders }) => {
   );
 };
 
-OrderIndex.getInitialProps = async (context, client) => {
+OrderIndex.getInitialProps = async (context: any, client: any) => {
   const { data } = await client.get('/api/orders');
 
   return { orders: data };
