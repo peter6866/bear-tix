@@ -24,6 +24,10 @@ build:
         manual:
           - src: "**/*.tsx"
             dest: .
+          - src: "**/*.css"
+            dest: .
+          - src: "**/*.html"
+            dest: .
     - image: us.gcr.io/ticketing-dev-425301/tickets
       context: tickets
       docker:

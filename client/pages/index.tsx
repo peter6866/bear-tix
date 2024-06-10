@@ -1,34 +1,50 @@
-import Link from 'next/link';
+import { Title, Text, Group, Card, Badge, Button, Box } from '@mantine/core';
+import Router from 'next/router';
 
-const LandingPage = ({ currentUser, tickets }: any) => {
-  const ticketList = tickets.map((ticket: any) => {
+interface Ticket {
+  id: string;
+  title: string;
+  price: number;
+}
+
+const LandingPage = ({ tickets }: any) => {
+  const ticketList = tickets.map((ticket: Ticket) => {
     return (
-      <tr key={ticket.id}>
-        <td>{ticket.title}</td>
-        <td>{ticket.price}</td>
-        <td>
-          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
-            View
-          </Link>
-        </td>
-      </tr>
+      <Card
+        key={ticket.id}
+        shadow="sm"
+        padding="lg"
+        withBorder
+        w={300}
+        my="1rem"
+      >
+        <Group justify="space-between" mb="xs">
+          <Text fw={500}>{ticket.title}</Text>
+          <Badge color="pink">On Sale</Badge>
+        </Group>
+
+        <Text fw={500}>${ticket.price}</Text>
+
+        <Button
+          color="blue"
+          fullWidth
+          mt="md"
+          radius="md"
+          onClick={() =>
+            Router.push('/tickets/[ticketId]', `/tickets/${ticket.id}`)
+          }
+        >
+          View
+        </Button>
+      </Card>
     );
   });
 
   return (
-    <div>
-      <h1>Tickets</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>{ticketList}</tbody>
-      </table>
-    </div>
+    <Box>
+      <Title order={3}>Events</Title>
+      {ticketList}
+    </Box>
   );
 };
 
